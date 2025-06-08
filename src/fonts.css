@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'DOSVGA';
+  src: url('./assets/fonts/LessPerfectDOSVGA.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'VT323';
+  src: url('./assets/fonts/VT323.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'WCMD';
+  src: url('./assets/fonts/windows_cmd.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
