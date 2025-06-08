@@ -15,9 +15,10 @@ type FrameProps = {
 	lockAspectRatio?: boolean | number;  
 	onClick: (id: number) => void;
 	isActive?: boolean;
+	isNotmaximizable?: boolean;
 };
 
-export default function Frame({ id, title, logo, onClose, children, x, y, width, height, onClick, isActive, lockAspectRatio=false }: FrameProps) { 
+export default function Frame({ id, title, logo, onClose, children, x, y, width, height, onClick, isActive, lockAspectRatio=false, isNotmaximizable=false }: FrameProps) { 
 	const [isMaximized, setIsMaximized] = useState(false);
 	const [isOpened, setIsOpened] = useState(true);
 
@@ -32,7 +33,8 @@ export default function Frame({ id, title, logo, onClose, children, x, y, width,
 		{isOpened &&
 		<Rnd
 			style={{
-				zIndex: isActive ? 999 : 1
+				zIndex: isActive ? 999 : 1,
+				cursor: undefined,
 			}}
 			onClick={() => onClick(id)}
 			default={{
@@ -54,11 +56,11 @@ export default function Frame({ id, title, logo, onClose, children, x, y, width,
 			}}
 			size={isMaximized ? 
 				{
-					width:  window.innerWidth,
+					width:  isNotmaximizable ? screenHeight * 0.9 : window.innerWidth,
 					height: screenHeight
 				} : {width: size.width, height: size.height}
 			}
-			position={isMaximized ? 
+			position={(isMaximized && !isNotmaximizable) ? 
 				{	
 					x: 0,
 					y: 0,
@@ -66,7 +68,7 @@ export default function Frame({ id, title, logo, onClose, children, x, y, width,
 			}
 		>
 		<div
-			className={`absolute flex flex-col p-[5px] border-[1px] border-win-bg bg-win-bg shadow-md`}
+			className={`absolute flex flex-col p-[5px] border-[1px] border-win-bg bg-win-bg shadow-md `}
 			style={{
 				width: "100%",
 				height: "100%",
@@ -88,7 +90,6 @@ export default function Frame({ id, title, logo, onClose, children, x, y, width,
 						<span className="text-sm font-wcmd">{title}</span>
 				</div>
 				}
-				
 				
 				<div className="flex gap-1">
 					<Button icon={"/src/assets/png/minimize.png"} onClick={handleClose} />

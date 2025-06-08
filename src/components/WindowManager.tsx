@@ -17,17 +17,17 @@ type WindowPosition = {
 	args: any,
 };
 
-const WINDOW_OFFSET = 30;
+const WINDOW_OFFSET = 50;
 const WINDOW_TOP = 0 //-window.innerHeight/2;
-const WINDOW_LEFT = 0 // -window.innerWidth/2;
+const WINDOW_LEFT = 400 // -window.innerWidth/2;
 
 export default function WindowManager() { 
 	const [windows, setWindows] = useState<WindowPosition[]>([
 		{
 			id: 1,
 			type: 'explorer',
-			x: WINDOW_LEFT,
-			y: WINDOW_TOP,
+			x: 234,
+			y: 104,
 			width: 400,
 			height: 300,
 			args: {folderPath: "/"}
@@ -59,24 +59,32 @@ export default function WindowManager() {
 
   return (
     <div className="absolute top-0 left-0">
-			<div className="fixed top-1/2 left-1/2">
-				<button onClick={() => addWindow("frame", { title: "My Frame" })}>
+			<div className="fixed top-[10px] left-[10px]">
+				{/* <button onClick={() => addWindow("frame", { title: "My Frame" })}>
 					Open Frame
-				</button>
-				<button
+				</button> */}
+				<button 
+          className="w-[64px] h-[48px] flex flex-col items-center focus:outline-0"
+          style={{
+            borderRadius: 0,
+            border: 0,
+            padding: 0,
+            backgroundColor: 'rgba(0,0,0,0)'
+          }}
 					onClick={() =>
-						addWindow("explorer", { folderPath: "/portfolio/NSFW" })
+						addWindow("explorer", { folderPath: "/" })
 					}
 				>
-					Open Explorer
+          <img src="/src/assets/png/folder_closed.png" alt="" width={32} height={32} />
+          <p>Portfolio</p>
 				</button>
-				<button
+				{/* <button
 					onClick={() =>
 						addWindow("viewer", { image: "/src/assets/portfolio/nsfw/tentacles.jpeg" }, 300, 330)
 					}
 				>
 					Open Paint
-				</button>
+				</button> */}
 			</div>
 
       {windows.map((win) => {

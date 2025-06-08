@@ -54,10 +54,7 @@ function App() {
         title='Test'
       >
       </Frame> */}
-      <WindowManager
-        
-      >
-
+      <WindowManager>
       </WindowManager>
       <Taskbar>
           <TaskbarButton

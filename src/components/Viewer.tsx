@@ -30,6 +30,7 @@ export default function Viewer({ id, title, logo, onClose, x, y, width, height, 
                 lockAspectRatio={true}
                 onClick={onClick}
                 isActive={isActive}
+                isNotmaximizable={true}
             >
                 {
                     <div className="w-full h-full bg-no-repeat bg-[position:right_top] bg-[length:85%_80%]"
