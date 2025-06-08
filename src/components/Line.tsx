@@ -8,8 +8,7 @@ type ButtonProps = {
 export default function Line({ icon, label, onClick}: ButtonProps) { 
     return (
        <button
-            onClick={onClick}
-            className="text-text-dark w-full h-[14px] focus:outline-[0px]"
+            onDoubleClick={onClick}
             style={{
                 borderRadius: 0,
                 padding: 0,
@@ -17,6 +16,7 @@ export default function Line({ icon, label, onClick}: ButtonProps) {
                 border: "none",
                 outline: "none",
             }}
+            className="line text-text-dark w-full h-[14px] focus:outline-[0px]"
         >
       <div
         className="flex gap-1 items-center"

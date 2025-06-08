@@ -46,6 +46,7 @@ body {
   overflow: hidden;
   margin: 0;
   cursor: url('./assets/pink_cursor.cur'), auto;
+  user-select: none;
   /* cursor: url('./assets/pink_cursor_pointer.cur'), auto; */
 }
 
@@ -62,6 +63,10 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.line:hover {
+  background-color: rgba(255, 255, 255, 0.4) !important;
 }
 
 a {

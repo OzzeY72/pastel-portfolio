@@ -2,43 +2,76 @@ import { useState } from "react";
 import { Rnd } from "react-rnd";
 import Button from "./Button";
 
-type TaskbarProps = {
+type FrameProps = {
 	title: string;
 	logo: string;
 	children: React.ReactNode;
 	onClose:any;
+	id: number;
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+	lockAspectRatio?: boolean | number;  
+	onClick: (id: number) => void;
+	isActive?: boolean;
 };
 
-export default function Frame({ title, logo, onClose, children }: TaskbarProps) { 
+export default function Frame({ id, title, logo, onClose, children, x, y, width, height, onClick, isActive, lockAspectRatio=false }: FrameProps) { 
 	const [isMaximized, setIsMaximized] = useState(false);
 	const [isOpened, setIsOpened] = useState(true);
 
+	const [size, setSize] = useState<{width: number, height: number}>({width, height});
+	const [position, setPosition] = useState<{x: number, y: number}>({x, y});
+
 	const handleMaximize = () => setIsMaximized(!isMaximized);
 	const handleClose = () => {setIsOpened(false); onClose?.()};
-
+	const screenHeight = window.innerHeight-26;
 	return (
 		<>
 		{isOpened &&
 		<Rnd
-      default={{
-        x: 100,
-        y: 100,
-        width: 400,
-        height: 300,
-      }}
-      minWidth={200}
-      minHeight={150}
-      bounds="window" // чтобы не выходило за пределы окна браузера
-      dragHandleClassName="handle"
-      className="absolute bg-win-bg shadow-md border border-win-border-dark"
-    >
+			style={{
+				zIndex: isActive ? 999 : 1
+			}}
+			onClick={() => onClick(id)}
+			default={{
+				x: position.x,
+				y: position.y,
+				width: size.width,
+				height: size.height,
+			}}
+			lockAspectRatio={lockAspectRatio}
+			minWidth={300}
+			minHeight={200}
+			maxHeight={screenHeight}
+			bounds="window"
+			dragHandleClassName="handle"
+			className="absolute bg-win-bg shadow-md border border-win-border-dark"
+			onDragStop={(e, d) => { setPosition({x: d.x, y: d.y})}}
+			onResize={(e, direction, ref, delta, position) => {
+				setSize({width: ref.offsetWidth, height: ref.offsetHeight});
+			}}
+			size={isMaximized ? 
+				{
+					width:  window.innerWidth,
+					height: screenHeight
+				} : {width: size.width, height: size.height}
+			}
+			position={isMaximized ? 
+				{	
+					x: 0,
+					y: 0,
+				} : {x: position.x, y: position.y}
+			}
+		>
 		<div
 			className={`absolute flex flex-col p-[5px] border-[1px] border-win-bg bg-win-bg shadow-md`}
 			style={{
-				width: isMaximized ? "100%" : "400px",
-				height: "300px",
+				width: "100%",
+				height: "100%",
 				borderRight: "2px solid var(--color-win-bg-rigt)",
-				borderBottom: "1px solid var(--color-win-border-dark)"
+				borderBottom: "1px solid var(--color-win-border-dark)",
 			}}
 		>
 			{/* Header */}
