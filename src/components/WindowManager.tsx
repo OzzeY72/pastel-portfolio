@@ -30,7 +30,7 @@ export default function WindowManager() {
 			y: WINDOW_TOP,
 			width: 400,
 			height: 300,
-			args: {folderPath: "/portfolio/NSFW"}
+			args: {folderPath: "/"}
 		}
 	]);
   const [activeWindowId, setActiveWindowId] = useState<number>(0);
