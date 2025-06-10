@@ -2,11 +2,13 @@ type TaskbarButtonProps = {
   icon: string;
   label: string;
   to: string;
+  onClick?: () => void;
 }
 
-export default function TaskbarButton({ icon, label, to }: TaskbarButtonProps) { 
+export default function TaskbarButton({ icon, label, to, onClick }: TaskbarButtonProps) { 
   return (
     <div
+    onClick={onClick!}
       className="relative h-[22px] pt-[2px] pr-[5px] pl-[5px] text-[16px] leading-none bg-pastel-200 text-text-dark font-wcmd tracking-[-0.04em]"
         style={{
           borderRadius: 0,

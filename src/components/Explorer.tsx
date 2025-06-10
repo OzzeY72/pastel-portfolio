@@ -77,7 +77,7 @@ function getFolderContentsByPath(fs: any, folderPath: string) {
   }));
 }
 
-export default function Explorer({ id, title, logo, onClose, x, y, width, height, args, createViewer, onClick, isActive }: ExplorerProps) { 
+export default function Explorer({ id, title, logo, onClose, x, y, width, height, args, createViewer, onClick }: ExplorerProps) { 
 	const [folder, setFolder] = useState(args?.folderPath);
 
 	const getParentFolder = (path: string) => {

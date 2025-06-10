@@ -1,4 +1,3 @@
-
 type ButtonProps = {
     icon: string;
     label: string;

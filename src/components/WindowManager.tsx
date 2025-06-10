@@ -3,10 +3,6 @@ import Explorer from "./Explorer";
 import Frame from "./Frame";
 import Viewer from "./Viewer";
 
-type WindowManagerProps = {
-  children: React.ReactNode;
-};
-
 type WindowPosition = {
 	id: number,
 	type: string,
@@ -17,9 +13,23 @@ type WindowPosition = {
 	args: any,
 };
 
+const pgifs = [
+  // "/src/assets/png/p1.gif",
+  "/src/assets/png/p2.gif",
+  // "/src/assets/png/p3.gif",
+  "/src/assets/png/p4.gif",
+  "/src/assets/png/p5.gif",
+  "/src/assets/png/p6.gif",
+  "/src/assets/png/p7.gif",
+]
+
 const WINDOW_OFFSET = 50;
 const WINDOW_TOP = 0 //-window.innerHeight/2;
-const WINDOW_LEFT = 400 // -window.innerWidth/2;
+const WINDOW_LEFT = 100 // -window.innerWidth/2;
+
+const getRandom = (max: number) => {
+  return Math.floor(Math.random() * max);
+}
 
 export default function WindowManager() { 
 	const [windows, setWindows] = useState<WindowPosition[]>([
@@ -35,17 +45,18 @@ export default function WindowManager() {
 	]);
   const [activeWindowId, setActiveWindowId] = useState<number>(0);
 
-	const addWindow = (type = "frame", args = {}, width = 400, height = 300) => {
+	const addWindow = (type = "frame", args = {}, width = 400, height = 300, x=0,y=0) => {
     const count = windows.length;
     const newWindow = {
       id: Date.now(),
       type,
-      x: WINDOW_LEFT + count * WINDOW_OFFSET,
-      y: WINDOW_TOP + count * WINDOW_OFFSET,
+      x: x === 0 ? WINDOW_LEFT + count * WINDOW_OFFSET : x,
+      y: y === 0 ? WINDOW_TOP + count * WINDOW_OFFSET : y,
       width: width,
       height: height,
       args,
     };
+    setActiveWindowId(newWindow.id);
     setWindows((prev) => [...prev, newWindow]);
   };
 
@@ -57,12 +68,39 @@ export default function WindowManager() {
     setWindows(prev => prev.filter(w => w.id !== id));
   };
 
+  const createAboutMe = () => {
+    addWindow(
+      "aboutme",
+      { gif: null },
+      500,
+      400,
+    );
+  }
+
   return (
     <div className="absolute top-0 left-0">
-			<div className="fixed top-[10px] left-[10px]">
-				{/* <button onClick={() => addWindow("frame", { title: "My Frame" })}>
-					Open Frame
-				</button> */}
+			<div className="absolute top-[10px] left-[10px]">
+				<button
+          style={{
+            backgroundColor: "rgba(0,0,0,0)"
+          }} 
+          className="bg-transparent w-[20px] h-[20px]"
+          onClick={async () => {
+            const { width, height } = document.querySelector('.window-bounds').getBoundingClientRect();
+            for (let i = 0; i < 50; i++) {
+              addWindow(
+                "p1",
+                { gif: pgifs[getRandom(pgifs.length)] },
+                500,
+                400,
+                getRandom(width - 500),
+                getRandom(height - 400),
+              );
+
+              await new Promise(resolve => setTimeout(resolve, 200));
+            }
+          }}>
+				</button>
 				<button 
           className="w-[64px] h-[48px] flex flex-col items-center focus:outline-0"
           style={{
@@ -140,6 +178,42 @@ export default function WindowManager() {
                 isActive={win.id === activeWindowId}
                 onClick={() => setActiveWindowId(win.id)}
               />
+            );
+            case "p1":
+            return (
+              <Frame
+                key={win.id}
+                id={win.id}
+                x={win.x}
+                y={win.y}
+                width={win.width}
+                height={win.height}
+								logo={'/src/assets/png/paint.png'}
+								title="Ƈїѕтяємα ρσνґєжďєнå. 𝕻єяєžαγυкå ηєνσżмσжηå."
+                onClose={() => closeWindow(win.id)}
+                isActive={win.id === activeWindowId}
+                onClick={() => setActiveWindowId(win.id)}
+              >
+                <img className="h-full w-full"  src={win.args.gif}/>
+              </Frame>
+            );
+            case "aboutme":
+            return (
+              <Frame
+                key={win.id}
+                id={win.id}
+                x={win.x}
+                y={win.y}
+                width={win.width}
+                height={win.height}
+								logo={'/src/assets/png/paint.png'}
+								title="About me"
+                onClose={() => closeWindow(win.id)}
+                isActive={win.id === activeWindowId}
+                onClick={() => setActiveWindowId(win.id)}
+              >
+                <img className="h-full w-full" src={"/src/assets/png/aboutme.png"}/>
+              </Frame>
             );
           default:
             return null;

@@ -16,10 +16,11 @@ type FrameProps = {
 	onClick: (id: number) => void;
 	isActive?: boolean;
 	isNotmaximizable?: boolean;
+	isFullSized?: boolean;
 };
 
-export default function Frame({ id, title, logo, onClose, children, x, y, width, height, onClick, isActive, lockAspectRatio=false, isNotmaximizable=false }: FrameProps) { 
-	const [isMaximized, setIsMaximized] = useState(false);
+export default function Frame({ id, title, logo, onClose, children, x, y, width, height, onClick, isActive, lockAspectRatio=false, isNotmaximizable=false, isFullSized=false }: FrameProps) { 
+	const [isMaximized, setIsMaximized] = useState(isFullSized);
 	const [isOpened, setIsOpened] = useState(true);
 
 	const [size, setSize] = useState<{width: number, height: number}>({width, height});
@@ -27,13 +28,15 @@ export default function Frame({ id, title, logo, onClose, children, x, y, width,
 
 	const handleMaximize = () => setIsMaximized(!isMaximized);
 	const handleClose = () => {setIsOpened(false); onClose?.()};
-	const screenHeight = window.innerHeight-26;
+
+	const { width: wwidth, height: wheight } = document.querySelector('.window-bounds')?.getBoundingClientRect() ?? {width: 400, height: 300};
+	const screenHeight = wheight - 26 -20;
 	return (
 		<>
 		{isOpened &&
 		<Rnd
 			style={{
-				zIndex: isActive ? 999 : 1,
+				zIndex: isActive ? 990 : 1,
 				cursor: undefined,
 			}}
 			onClick={() => onClick(id)}
@@ -47,16 +50,18 @@ export default function Frame({ id, title, logo, onClose, children, x, y, width,
 			minWidth={300}
 			minHeight={200}
 			maxHeight={screenHeight}
-			bounds="window"
+			//bounds="window"
+			bounds=".window-bounds"
 			dragHandleClassName="handle"
-			className="absolute bg-win-bg shadow-md border border-win-border-dark"
-			onDragStop={(e, d) => { setPosition({x: d.x, y: d.y})}}
+			className="relative bg-win-bg shadow-md border border-win-border-dark"
+			onDragStop={(e, d) => { console.log(e); setPosition({x: d.x, y: d.y})}}
 			onResize={(e, direction, ref, delta, position) => {
+				console.log(e,direction,delta,position);
 				setSize({width: ref.offsetWidth, height: ref.offsetHeight});
 			}}
 			size={isMaximized ? 
 				{
-					width:  isNotmaximizable ? screenHeight * 0.9 : window.innerWidth,
+					width:  isNotmaximizable ? screenHeight * 0.9 : wwidth,
 					height: screenHeight
 				} : {width: size.width, height: size.height}
 			}
