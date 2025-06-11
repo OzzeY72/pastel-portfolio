@@ -95,7 +95,7 @@ export default function Explorer({ id, title, logo, onClose, x, y, width, height
 	console.log(getFolderContentsByPath(mockFileSystem, folder)); 
 
 	const instantiateImage = (image: string) => {
-		createViewer(`./src/assets/${image}`);
+		createViewer(`./src/assets${image}`);
 	}
 
 

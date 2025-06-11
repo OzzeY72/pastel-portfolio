@@ -35,7 +35,7 @@ const StarTrail = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-50 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-999 overflow-hidden">
       {stars.map(star => (
         <div
           key={star.id}
