@@ -42,12 +42,12 @@ export default function Viewer({ id, title, logo, onClose, x, y, width, height, 
                         <div>
                             
                         </div>
-                        <img className="w-full h-full" src={"./assets/png/framework_test.png"} alt={args?.image} />
+                        <img className="w-full h-full" src={"./src/assets/png/framework_test.png"} alt={args?.image} />
                     </div>
 
                     //  <div className="w-full h-full bg-no-repeat bg-cover"
                     // style={{
-                    //     backgroundImage:'url(./assets/png/framework_test.png)',
+                    //     backgroundImage:'url(./src/assets/png/framework_test.png)',
                     // }}>
                     //     <img src={args?.image} alt={args?.image} />
                     // </div>

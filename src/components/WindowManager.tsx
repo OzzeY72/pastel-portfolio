@@ -14,13 +14,13 @@ type WindowPosition = {
 };
 
 const pgifs = [
-  // "./assets/png/p1.gif",
-  "./assets/png/p2.gif",
-  // "./assets/png/p3.gif",
-  "./assets/png/p4.gif",
-  "./assets/png/p5.gif",
-  "./assets/png/p6.gif",
-  "./assets/png/p7.gif",
+  // "./src/assets/png/p1.gif",
+  "./src/assets/png/p2.gif",
+  // "./src/assets/png/p3.gif",
+  "./src/assets/png/p4.gif",
+  "./src/assets/png/p5.gif",
+  "./src/assets/png/p6.gif",
+  "./src/assets/png/p7.gif",
 ]
 
 const WINDOW_OFFSET = 50;
@@ -113,12 +113,12 @@ export default function WindowManager() {
 						addWindow("explorer", { folderPath: "/" })
 					}
 				>
-          <img src="./assets/png/folder_closed.png" alt="" width={32} height={32} />
+          <img src="./src/assets/png/folder_closed.png" alt="" width={32} height={32} />
           <p>Portfolio</p>
 				</button>
 				{/* <button
 					onClick={() =>
-						addWindow("viewer", { image: "./assets/portfolio/nsfw/tentacles.jpeg" }, 300, 330)
+						addWindow("viewer", { image: "./src/assets/portfolio/nsfw/tentacles.jpeg" }, 300, 330)
 					}
 				>
 					Open Paint
@@ -153,7 +153,7 @@ export default function WindowManager() {
                 y={win.y}
                 width={win.width}
                 height={win.height}
-								logo={'./assets/png/flop_drive.png'}
+								logo={'./src/assets/png/flop_drive.png'}
 								title="Explorer"
                 onClose={() => closeWindow(win.id)}
                 args={win.args}
@@ -171,7 +171,7 @@ export default function WindowManager() {
                 y={win.y}
                 width={win.width}
                 height={win.height}
-								logo={'./assets/png/paint.png'}
+								logo={'./src/assets/png/paint.png'}
 								title="Paint"
                 onClose={() => closeWindow(win.id)}
                 args={win.args}
@@ -188,7 +188,7 @@ export default function WindowManager() {
                 y={win.y}
                 width={win.width}
                 height={win.height}
-								logo={'./assets/png/paint.png'}
+								logo={'./src/assets/png/paint.png'}
 								title="Ƈїѕтяємα ρσνґєжďєнå. 𝕻єяєžαγυкå ηєνσżмσжηå."
                 onClose={() => closeWindow(win.id)}
                 isActive={win.id === activeWindowId}
@@ -206,13 +206,13 @@ export default function WindowManager() {
                 y={win.y}
                 width={win.width}
                 height={win.height}
-								logo={'./assets/png/paint.png'}
+								logo={'./src/assets/png/paint.png'}
 								title="About me"
                 onClose={() => closeWindow(win.id)}
                 isActive={win.id === activeWindowId}
                 onClick={() => setActiveWindowId(win.id)}
               >
-                <img className="h-full w-full" src={"./assets/png/aboutme.png"}/>
+                <img className="h-full w-full" src={"./src/assets/png/aboutme.png"}/>
               </Frame>
             );
           default:

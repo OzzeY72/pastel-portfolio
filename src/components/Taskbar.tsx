@@ -12,7 +12,7 @@ export default function Taskbar({children, createAboutMe }: TaskbarProps) {
     >
         <TaskbarButton
             label="Start"
-            icon='./assets/png/start.png'
+            icon='./src/assets/png/start.png'
             to=''
             onClick={createAboutMe!}
         />
