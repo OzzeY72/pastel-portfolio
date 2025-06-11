@@ -39,6 +39,7 @@ const mockFileSystem = {
 					type: "folder",
 					children: [
 						{ name: "alice_in_wonderland.jpeg", type: "file" },
+						{ name: "girl_in_pool.jpeg", type: "file" },
 					]
 				}
 			]
