@@ -27,7 +27,7 @@ const mockFileSystem = {
 			children: 
 			[
 				{
-					name: "NSFW",
+					name: "nsfw",
 					type: "folder",
 					children: [
 						{ name: "tentacles.jpeg", type: "file" },
@@ -96,6 +96,7 @@ export default function Explorer({ id, title, logo, onClose, x, y, width, height
 
 	const instantiateImage = (image: string) => {
 		createViewer(`./src/assets${image}`);
+		console.log(image);
 	}
 
 
