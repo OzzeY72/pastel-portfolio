@@ -50,7 +50,7 @@ const StarTrail = () => {
             boxShadow: '0 0 10px 2px rgba(246, 51, 154, 0.7)'
           }}
         >
-          <img src="/src/assets/png/star.png" alt="" />
+          <img src="./assets/png/star.png" alt="" />
         </div>
       ))}
     </div>

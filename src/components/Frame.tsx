@@ -97,9 +97,9 @@ export default function Frame({ id, title, logo, onClose, children, x, y, width,
 				}
 				
 				<div className="flex gap-1">
-					<Button icon={"/src/assets/png/minimize.png"} onClick={handleClose} />
-					<Button icon={"/src/assets/png/maximize.png"} onClick={handleMaximize} />
-					<Button icon={"/src/assets/png/close.png"} onClick={handleClose} />
+					<Button icon={"./assets/png/minimize.png"} onClick={handleClose} />
+					<Button icon={"./assets/png/maximize.png"} onClick={handleMaximize} />
+					<Button icon={"./assets/png/close.png"} onClick={handleClose} />
 				</div>
 			</div>
 

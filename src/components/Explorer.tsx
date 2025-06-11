@@ -95,7 +95,7 @@ export default function Explorer({ id, title, logo, onClose, x, y, width, height
 	console.log(getFolderContentsByPath(mockFileSystem, folder)); 
 
 	const instantiateImage = (image: string) => {
-		createViewer(`/src/assets/${image}`);
+		createViewer(`./assets/${image}`);
 	}
 
 
@@ -115,7 +115,7 @@ export default function Explorer({ id, title, logo, onClose, x, y, width, height
 				<Line 
 					key={'..'}
 					label="(..)"
-					icon="/src/assets/png/folder_closed.png"
+					icon="./assets/png/folder_closed.png"
 					onClick={() => setFolder(getParentFolder(folder))}
 				/>
 			}
@@ -124,7 +124,7 @@ export default function Explorer({ id, title, logo, onClose, x, y, width, height
 					<Line
 						key={line.path}
 						label={line.name}
-						icon={line.type === "folder" ? "/src/assets/png/folder_closed.png" : "/src/assets/png/image_editor.png"}
+						icon={line.type === "folder" ? "./assets/png/folder_closed.png" : "./assets/png/image_editor.png"}
 						onClick={line.type === "folder" ? () => setFolder(line.path) : () => instantiateImage(line.path)}
 					/>
 				))

@@ -63,17 +63,17 @@ function App() {
       </WindowManager>
       <Taskbar >
           <TaskbarButton
-            icon={'/src/assets/png/camera.png'}
+            icon={'./assets/png/camera.png'}
             label={'Instagram'}
             to='https://www.instagram.com/hatzumomo_/'
           />
           <TaskbarButton
-            icon={'/src/assets/png/printer.png'}
+            icon={'./assets/png/printer.png'}
             label={'Twitter'}
             to='https://x.com/Ansi_nyx'
           />
           <TaskbarButton
-            icon={'/src/assets/png/paint_alt.png'}
+            icon={'./assets/png/paint_alt.png'}
             label={'Fiverr'}
             to='https://www.fiverr.com/hatzumomo?public_mode=true'
           />
